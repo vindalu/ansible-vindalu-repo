@@ -1,0 +1,11 @@
+---
+# tasks file for ansible-vindaloo-repo
+
+- name: Install GPG tools 
+  yum: pkg=pygpgme state=latest
+
+- name: Add packagecloud Vindaloo repo public signing key
+  rpm_key: key=https://packagecloud.io/gpg.key state=present
+
+- name: Install Vindalu repo
+  template: src=vindalu.repo.j2 dest=/etc/yum.repos.d/vindalu.repo
